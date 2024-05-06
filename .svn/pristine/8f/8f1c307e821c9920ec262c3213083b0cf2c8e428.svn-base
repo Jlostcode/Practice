@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>boardMain</title>
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.0/dist/css/coreui.min.css" rel="stylesheet"
+          integrity="sha384-2E9/b2fZ+VJoP6eRIpzzMFkuqbh0qDkIFVLzJJwkESsdKPEwzb0n6E55enZ+Ee8V" crossorigin="anonymous">
+    <link href="/board/css/boardMainTable.css" rel="stylesheet">
+    <style>
+        .btn-dark {
+            --cui-btn-color: rgba(255, 255, 255, 0.87);
+            --cui-btn-bg: #000000;
+            --cui-btn-border-color: #4f5d73;
+            --cui-btn-hover-color: #fff;
+            --cui-btn-hover-bg: #697588;
+            --cui-btn-hover-border-color: #616d81;
+            --cui-btn-focus-shadow-rgb: 100, 112, 132;
+            --cui-btn-active-color: #fff;
+            --cui-btn-active-bg: #727d8f;
+            --cui-btn-active-border-color: #616d81;
+            --cui-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 21, 0.125);
+            --cui-btn-disabled-color: rgba(255, 255, 255, 0.87);
+            --cui-btn-disabled-bg: #4f5d73;
+            --cui-btn-disabled-border-color: #4f5d73;
+        }
+    </style>
+    <script>
+        function redirectBoardURL(index) {
+            let boardId = document.getElementById('boardId_' + index).value;
+            let goURL = '/board/view?board_id=' + boardId;
+            window.location.href = goURL;
+        }
+    </script>
+</head>
+<body>
+
+<th:block th:replace="~{layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content">
+        <div th:if="${param.boardsuccess == 'yes'}">
+            <script>
+                if ("yes" === "${param.boardsuccess}") {
+                    showAlert("게시물 등록이 완료되었습니다!");
+                    // 새로고침
+                    location.reload();
+                }
+
+                function showAlert(message) {
+                    Swal.fire({
+                        icon: 'warning',
+                        iconColor: '#12192c',
+                        title: '알림',
+                        text: message,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: '확인'
+                    });
+                }
+            </script>
+        </div>
+        <div class="wrapper">
+
+            <div class="title-text" style="text-align: center;">
+                <h1>예제 게시판</h1>
+            </div>
+            <div th:if="${listPage.getBoardDtos().isEmpty()}">
+                <p>게시글이 없습니다.</p>
+            </div>
+            <div th:unless="${listPage.getBoardDtos().isEmpty()}">
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="width: 10px">번호</th>
+                        <th>작성자</th>
+                        <th>제목</th>
+                        <th>작성일자</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div th:each="dto, index : ${listPage.getBoardDtos()}">
+
+                        <input type="hidden" th:id="boardId_ + ${index.index}" th:value="${dto.board_id}">
+                        <tr>
+                            <td th:text="${dto.row_num}"></td>
+                            <td>[[${dto.user_name}]]</td>
+                            <td th:onclick="'redirectBoardURL(' + ${index.index} + ')'">
+                                <a th:href="@{'/board/view?board_id=' + ${dto.board_id}}" class="view-link"
+                                   style=" width: 800px;"
+                                   th:data-board-id="${dto.board_id}">[[${dto.board_title}]]</a></td>
+                            <td th:text="${#dates.format(dto.board_regdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        </tr>
+
+                    </div>
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation example">
+                    <div class="board-list-page" th:if="${listPage.hasBoardDtos()}">
+                        <ul class="pagination" style="justify-content: center; text-align: center; display: flex;">
+                            <li class="page-item">
+                            <li class="page-item" th:if="${listPage.currentPage > 1}">
+                                <a class="page-link" aria-label="<<"
+                                   th:href="@{'/board/main?pageNo=' + ${listPage.currentPage - 1}}">&laquo;</a>
+                            </li>
+                            <span th:each="pNo : ${#numbers.sequence(listPage.startPage, listPage.endPage)}">
+                    <span th:if="${pNo == listPage.currentPage}">
+                        <li class="page-item">
+                            <a style="font-weight: bold" class="page-link" aria-current="page"
+                               th:text="${pNo}">[[${pNo}]]</a>
+                        </li>
+                    </span>
+                    <span th:unless="${pNo == listPage.currentPage}">
+                        <li class="page-item">
+                            <a class="page-link" th:aria-label="${pNo}" th:text="${pNo}"
+                               th:href="@{'/board/main?pageNo=' + ${pNo}}">[[${pNo}]]</a>
+                        </li>
+                    </span>
+                </span>
+                            <span th:if="${listPage.currentPage < listPage.totalPages}">
+                    <a class="page-link"
+                       th:href="@{'/board/main?pageNo=' + ${listPage.currentPage + 1}}">&raquo;</a>
+                </span>
+                        </ul>
+                    </div>
+                </nav>
+                <div style="text-align: end;display: flex;justify-content: flex-end;">
+                    <button type="button" class="btn btn-dark" onclick="location.href='/board/insert'">글 작성</button>
+                </div>
+            </div>
+        </div>
+    </th:block>
+
+</th:block>
+
+
+</body>
+</html>

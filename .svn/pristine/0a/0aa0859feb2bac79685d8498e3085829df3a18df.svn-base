@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>signUp</title>
+    <!-- include SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!--    include bootstrap ,jquery-->
+    <link href="/board/css/bootstrap_3.4.1.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/user/css/userInfo.css">
+</head>
+<body>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="container">
+
+            <div class="userInfoBox">
+                <div class="infoBoxTitle">
+                <h1>회원 정보</h1>
+                </div>
+                <div class="subindex_box">
+
+                    <div class="form-groupnoline myphoto" >
+                        <img src="https://static.nid.naver.com/images/web/user/default.png" width="56" height="56" alt="내 프로필 이미지">
+                        <div class="userInfoText naming" th:text="${userDto.user_name}"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="userInfoText" th:text="${userDto.user_id}"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="userInfoText" th:text="${userDto.user_tel}"></div>
+                    </div>
+                    <div class="form-groupnoline">
+                        <div class="userInfoText" id="inputGen1" th:if="${userDto.user_gen == '1'}">
+                            남성
+                        </div>
+                        <div class="userInfoText" id="inputGen2" th:if="${userDto.user_gen == '2'}">
+                            여성
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="passwordChange">
+                <div class="infoBoxTitle">
+                    <h1>비밀번호 변경</h1>
+                </div>
+                <div class="subindex_box">
+                    <div class="passwordChangeBtn">
+                        <button type="button" class="btns btn_bdr4 btn_mid edit_btn"
+                                data-toggle="modal" data-target="#exampleModalPass">수정</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalPass" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="staticBackdropLabel">비밀번호 변경</h3>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="edit_input">
+                            <div class="mb-3">
+                                <label for="password_first" class="col-form-label">새 비밀번호</label>
+                                <input type="text" class="form-control" id="password_first" name="password_first">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password_second" class="col-form-label">새 비밀번호 확인</label>
+                                <input type="text" class="form-control" id="password_second" name="password_second">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="com_save_btn" class="btn btn-primary passwordChange">저장</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </th:block>
+</th:block>
+<script src="/user/js/changePassword.js"></script>
+</body>
+</html>

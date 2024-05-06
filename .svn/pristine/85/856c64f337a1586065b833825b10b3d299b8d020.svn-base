@@ -1,0 +1,24 @@
+spring.application.name=practice
+
+server.port=9919
+
+spring.datasource.url=jdbc:log4jdbc:mysql://localhost:3306/practice00?serverTimezone=Asia/Seoul&characterEncoding=UTF8
+spring.datasource.username=root
+spring.datasource.password=1234
+spring.datasource.driver-class-name=net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+
+spring.messages.basename=message
+spring.messages.encoding=UTF-8
+
+spring.mvc.pathmatch.matching-strategy=ant_path_matcher
+
+mybatis.mapper-locations=classpath:/mapper/**/*.xml
+
+
+# thymeleaf
+spring.thymeleaf.cache=false
+spring.thymeleaf.prefix=classpath:/templates/
+server.max-http-header-size=300000
+
+# Exception 404
+spring.mvc.throw-exception-if-no-handler-found=true

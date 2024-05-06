@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.practice.melonBot.dao.MelonDao">
+    <!-- board 테이블 전체 컬럼 -->
+
+    <select id="melonAllSelect" resultType="com.example.practice.melonBot.dto.MelonDto">
+
+        SELECT
+            melon.*
+        FROM
+            melon
+    </select>
+    <insert id="melonSet" parameterType="com.example.practice.melonBot.dto.MelonDto">
+        insert
+        into melon (melon_rank, melon_title, melon_artist, melon_like, melon_createDate)
+        values (#{melon_rank}, #{melon_title}, #{melon_artist}, #{melon_like}, now())
+    </insert>
+    <update id="melonUpdate" parameterType="com.example.practice.melonBot.dto.MelonDto">
+        update melon
+        set
+            melon_title = #{melon_title}, melon_artist = #{melon_artist}, melon_like = #{melon_like}, melon_createDate = now()
+        where
+            melon_rank = #{melon_rank}
+
+    </update>
+    <delete id="melonDelete">
+        truncate table melon
+    </delete>
+
+
+</mapper>

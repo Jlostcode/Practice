@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>signUp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+<body>
+<form method="post" th:action="@{/signUpAdd}" onsubmit="return checkNullSignUp();">
+    <div class="container">
+        <h1>회원가입</h1>
+        <div class="form-group">
+            <label for="inputName">이름</label>
+            <input type="text" class="form-control" id="inputName" name="user_name" placeholder="사용자 이름">
+        </div>
+        <div class="form-group">
+            <label for="inputId">ID</label>
+            <input type="text" class="form-control" id="inputId" name="user_id" placeholder="사용자 아이디">
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">password</label>
+            <input type="password" class="form-control" id="inputPassword" name="user_pw" placeholder="사용자 비밀번호">
+        </div>
+        <div class="form-group">
+            <label for="inputTel">휴대번호</label>
+            <input type="text" class="form-control" id="inputTel" name="user_tel" placeholder="사용자 휴대번호">
+        </div>
+         <div class="form-group">
+            <label for="inputGen">성별</label>
+            <div id="inputGen">
+
+                <label for="noneGen"></label>
+                <input type="hidden" id="noneGen" name="user_gen" value="0" placeholder="0" checked/>
+
+                <label for="male">남자</label>
+                    <input type="radio" id="male" name="user_gen" value="1" placeholder="사용자 성별(남)" />
+
+                <label for="female">여자</label>
+                    <input type="radio" id="female" name="user_gen" value="2" placeholder="사용자 성별(여)"/>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 text-left">
+                <button type="submit" class="btn btn-primary">가입 완료</button>
+            </div>
+            <div class="col-md-6 text-right">
+                <a th:href="@{/}" class="btn btn-primary">로그인</a>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="/signUp/js/signUpNull.js" type="application/javascript"></script>
+</body>
+</html>

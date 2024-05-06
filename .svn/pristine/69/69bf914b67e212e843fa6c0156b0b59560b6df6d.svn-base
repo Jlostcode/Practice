@@ -1,0 +1,76 @@
+document.addEventListener('DOMContentLoaded', function () {
+    var buttons = document.querySelectorAll('.insert_btn');
+
+
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            // 널 체크 함수 호출
+            if (!checkNullBoard()) {
+                return; // 널 체크 함수에서 false가 반환되면 함수 종료
+            }
+            var board_title = document.getElementsByName('board_title')[0].value;
+            var board_sub = document.getElementsByName('board_sub')[0].value;
+            console.log(board_title,board_sub);
+            // 사용자가 확인 버튼을 눌렀을 경우
+            $.ajax({
+                type: 'GET',
+                url: '/board/oneInsert',
+                data: {board_title: board_title, board_sub: board_sub},
+                success: function () {
+                    // 삭제 완료 메시지
+                    Swal.fire({
+                        title: '게시물이 정상적으로 등록되었습니다.',
+                        icon: 'success',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // 확인 버튼을 눌렀을 때 페이지 이동
+                            window.location.href = '/board/main';
+                        }
+                    });
+
+                },
+                error: function (error) {
+                    Swal.fire({
+                        title: '게시물의 크기 오류',
+                        icon: 'warning',
+                    })
+                    console.error('Error fetching data:', error);
+
+                }
+            });
+
+
+        });
+    });
+});
+
+
+function checkNullBoard() {
+    // 각 입력 필드의 값을 가져와서 null 체크
+    var board_title = document.getElementsByName('board_title')[0].value;
+    var board_sub = document.getElementsByName('board_sub')[0].value;
+
+
+    if (board_title.trim() === "") {
+        showAlert("글 제목을 입력해주세요.");
+        return false;
+    }
+
+    if (board_sub.trim() === "") {
+        showAlert("글 내용을 입력해주세요.");
+        return false;
+    }
+
+    return true;
+}
+
+function showAlert(message) {
+    Swal.fire({
+        icon: 'warning',
+        iconColor:'#12192c',
+        title: '알림',
+        text: message,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: '확인'
+    });
+}

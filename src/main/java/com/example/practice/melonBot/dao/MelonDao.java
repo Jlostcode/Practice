@@ -1,0 +1,24 @@
+package com.example.practice.melonBot.dao;
+
+import com.example.practice.melonBot.dto.MelonDto;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+@Mapper
+public interface MelonDao {
+
+    List<MelonDto> melonAllSelect();
+
+    void melonSet(@Param("melon_rank") int melon_rank, @Param("melon_title") String melon_title,
+                     @Param("melon_artist") String melon_artist, @Param("melon_like") String melon_like,
+                     @Param("melon_titleLink") String melon_titleLink, @Param("melon_artistLink") String melon_artistLink);
+
+    void melonUpdate(@Param("melon_rank") int melon_rank, @Param("melon_title") String melon_title,
+            @Param("melon_artist") String melon_artist, @Param("melon_like") String melon_like,
+            @Param("melon_titleLink") String melon_titleLink, @Param("melon_artistLink") String melon_artistLink);
+
+    void melonDelete();
+
+}

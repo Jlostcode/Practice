@@ -1,0 +1,14 @@
+<!--유저 페이지-->
+<!--asset_denied.html-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 실패</title>
+</head>
+<body>
+<h2 style="text-align: center;">!!!아이디 또는 비밀번호가 틀렸습니다!!!</h2>
+ <button style="box-align: center;" type="button" class="btn btn-primary" onClick="location.href='/login'">로그인 재시도</button>
+</body>
+</html>

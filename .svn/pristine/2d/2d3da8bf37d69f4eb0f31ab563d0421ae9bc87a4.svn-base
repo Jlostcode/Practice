@@ -1,0 +1,26 @@
+package com.example.practice.board.dao;
+
+import com.example.practice.board.dto.BoardDto;
+import com.example.practice.login.dto.UserDto;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+@Mapper
+public interface BoardDao {
+
+//    게시판 글 개수 카운트
+    Integer boardAllCount();
+//    게시판 목록 select 페이징 처리
+    List<BoardDto> boardAllSelectDescPage(@Param("startRow") int startRow, @Param("size") int size);
+
+    BoardDto boardOneSelect(@Param("board_id") int board_id);
+
+    void boardInsert(@Param("user_no") int user_no,@Param("board_title") String board_title,
+                     @Param("board_sub") String board_sub);
+
+    void boardUpdate(@Param("board_title") String board_title, @Param("board_sub") String board_sub, @Param("board_id") int board_id);
+
+    void boardDelete(@Param("board_id") int board_id);
+}

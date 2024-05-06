@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c836cb9d-2d89-4e25-8597-99362ece80d6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="practice" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="spring-beans.schema" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2dwNSoIeLOrYTtdbKBmust7pOUF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Gradle.Build practice.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.PracticeApplication.executor&quot;: &quot;Run&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Dev/ex/ownote&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Subversion&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\아인스\Desktop\JuchanEX\practice\src\main\resources\mapper" />
+      <recent name="C:\Users\아인스\Desktop\JuchanEX\practice\src\main\resources\static\signUp\js" />
+      <recent name="C:\Users\아인스\Desktop\JuchanEX\practice\src\main\resources\templates\signUp" />
+      <recent name="C:\Users\아인스\Desktop\JuchanEX\practice\src\main\resources\static\board\css\boardView" />
+      <recent name="C:\Users\아인스\Desktop\JuchanEX\practice\src\main\resources\static\board\js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\아인스\Desktop\JuchanEX\practice\src\main\resources\templates\user" />
+      <recent name="C:\Users\아인스\Desktop\JuchanEX\practice\src\main\resources\static\board\js\boardView" />
+      <recent name="C:\Users\아인스\Desktop\JuchanEX\practice\src\main\resources\templates\board" />
+      <recent name="C:\Users\아인스\Desktop\JuchanEX\practice\src\main\resources\static\board\js" />
+      <recent name="C:\Users\아인스\Desktop\JuchanEX\practice\src\main\resources\static\board\css" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.practice.user.service" />
+      <recent name="com.example.practice.user.dto" />
+      <recent name="com.example.practice.comment.dto" />
+      <recent name="com.example.practice.comment.controller" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="PracticeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="practice.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.practice.PracticeApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="practice.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.practice.PracticeApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-ae57be32" />
+        <option value="jdk-11.0.22-corretto-11.0.22-4caba194b151-868cef46" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\아인스\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Users\아인스\Desktop\JuchanEX\practice" />
+          <option name="myCopyRoot" value="C:\Users\아인스\Desktop\JuchanEX\practice" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Users\아인스\Desktop\JuchanEX\practice" />
+          <option name="myCopyRoot" value="C:\Users\아인스\Desktop\JuchanEX\practice" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c836cb9d-2d89-4e25-8597-99362ece80d6" name="Changes" comment="" />
+      <created>1710915185309</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710915185309</updated>
+      <workItem from="1710915186355" duration="976000" />
+      <workItem from="1710916960931" duration="589000" />
+      <workItem from="1710917576903" duration="152000" />
+      <workItem from="1710917737876" duration="437000" />
+      <workItem from="1710918183288" duration="59534000" />
+      <workItem from="1711324697742" duration="65875000" />
+      <workItem from="1711526937025" duration="2361000" />
+      <workItem from="1711583627643" duration="1679000" />
+      <workItem from="1711585838871" duration="3547000" />
+      <workItem from="1711598951606" duration="1885000" />
+      <workItem from="1711603097588" duration="3000" />
+      <workItem from="1711614478415" duration="13337000" />
+      <workItem from="1711691521702" duration="3300000" />
+    </task>
+    <task id="LOCAL-00001" summary="READ ME MODIFY">
+      <option name="closed" value="true" />
+      <created>1711587270845</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711587270845</updated>
+    </task>
+    <task id="LOCAL-00002" summary="bootWAR">
+      <option name="closed" value="true" />
+      <created>1711592415943</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1711592415943</updated>
+    </task>
+    <task id="LOCAL-00003" summary="5:32">
+      <option name="closed" value="true" />
+      <created>1711614756679</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711614756679</updated>
+    </task>
+    <task id="LOCAL-00004" summary="/ modify">
+      <option name="closed" value="true" />
+      <created>1711615494763</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711615494763</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="READ ME MODIFY" />
+    <MESSAGE value="bootWAR" />
+    <MESSAGE value="5:32" />
+    <MESSAGE value="/ modify" />
+    <option name="LAST_COMMIT_MESSAGE" value="/ modify" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

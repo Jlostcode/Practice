@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.practice.board.dao.BoardDao">
+    <!-- board 테이블 전체 컬럼 -->
+    <sql id="boardColumns">
+        board_id
+        , user_no
+        , board_title
+        , board_sub
+        , board_regdate
+        , user_name
+
+    </sql>
+
+    <select id="boardAllCount" resultType="Integer">
+        SELECT count(*) FROM board
+        JOIN user ON board.user_no = USER.user_no
+    </select>
+
+    <select id="boardAllSelectDescPage" resultType="com.example.practice.board.dto.BoardDto">
+        SELECT board.*, USER.user_name
+        FROM board
+        JOIN USER ON board.user_no = USER.user_no
+        ORDER BY board.board_id DESC
+            LIMIT #{startRow}, #{size}
+    </select>
+    <select id="boardOneSelect" resultType="com.example.practice.board.dto.BoardDto">
+        SELECT board.*, USER.user_name
+        FROM board
+                 JOIN USER ON board.user_no = USER.user_no
+        WHERE board_id = #{board_id}
+    </select>
+    <insert id="boardInsert" parameterType="com.example.practice.board.dto.BoardDto">
+        INSERT INTO board ( user_no, board_title, board_sub, board_regdate ) VALUES (
+        #{user_no},
+        #{board_title},
+        #{board_sub},
+        now()
+        )
+    </insert>
+    <update id="boardUpdate" parameterType="com.example.practice.board.dto.BoardDto">
+        UPDATE board
+        SET board_title = #{board_title}, board_sub = #{board_sub}
+        WHERE board_id = #{board_id}
+    </update>
+    <delete id="boardDelete" parameterType="int">
+        DELETE FROM board WHERE board_id = #{board_id}
+    </delete>
+</mapper>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>boardView</title>
+    <link href="/board/css/boardView/button.css" rel="stylesheet">
+    <link href="/board/css/boardView/common.css" rel="stylesheet">
+    <link href="/board/css/boardView/content.css" rel="stylesheet">
+    <link href="/board/css/boardView/default.css" rel="stylesheet">
+<!--    include core ui-->
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.0/dist/css/coreui.min.css" rel="stylesheet"
+          integrity="sha384-2E9/b2fZ+VJoP6eRIpzzMFkuqbh0qDkIFVLzJJwkESsdKPEwzb0n6E55enZ+Ee8V" crossorigin="anonymous">
+    <!-- include SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!--    include bootstrap ,jquery-->
+    <link href="/board/css/bootstrap_3.4.1.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content">
+        <div class="content">
+            <section>
+
+                <div th:each="dto : ${boardDto}">
+                    <table class="tb tb_row">
+                        <colgroup>
+                            <col style="width:10%;" /><col style="width:23%;" /><col style="width:10%;" /><col style="width:23%;" />
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th scope="row">등록일</th>
+                            <td colspan="5" th:text="${#dates.format(dto.board_regdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">제목</th>
+                            <td colspan="5">[[ ${dto.board_title} ]]</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">이름</th>
+                            <td colspan="3">[[ ${dto.user_name} ]]</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">내용</th>
+                            <td colspan="3" th:utext="${dto.board_sub}" ></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="commentIn" style="width: 100%; /* 최대 너비로 설정 */ max-width: 100%; /* 최대 너비로 설정 */ padding-top: 15px ;">
+                    <div class="card border-dark mb-3" style="width: 100%;">
+                        <div class="card-header">댓글 작성하기</div>
+                        <div class="card-body text-dark">
+                            <label for="commentEdit"></label><textarea name="comment_sub" id="commentEdit" rows="4" cols="50"></textarea>
+                            <hr>
+                            <div style="text-align: end;display: flex;justify-content: flex-end;">
+                            <button type="button"  class="btns btn_bdr5 btn_mid comment_insert_btn" th:data-board-id="${boardDto.board_id}">작성하기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="commentList" style="width: 100%; /* 최대 너비로 설정 */ max-width: 100%; /* 최대 너비로 설정 */">
+                    <div th:each="dto, dtoi : ${listPage.getCommentDtos()}" class="card border-dark mb-3" style="width: 100%;">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div style="width: 50%;" th:text="${dto.user_name}"></div>
+
+                            <div th:if="${dto.user_no == user_no || role == 1}">
+                                <button type="button" class="btns btn_bdr4 btn_mid edit_btn" th:id="'edit_btn_' + ${dtoi.index}"
+                                        data-toggle="modal" data-target="#exampleModal"
+                                th:data-username="${dto.user_name}" th:data-comsub="${dto.comment_sub}" th:data-comcre="${dto.comment_created}"
+                                        th:data-comid="${dto.comment_id}" th:data-boardid="${dto.board_id}"
+                                >수정</button>
+                                <button type="button"  class="btns btn_bdr1 btn_mid deleteCom_btn"
+                                        th:id="'deleteCom'+${dtoi.index}" th:data-comid="${dto.comment_id}">삭제</button>
+                            </div>
+                        </div>
+                        <div class="card-body text-dark commentUp"> <!-- 댓글표시 -->
+                            <pre class="card-title" th:utext="${dto.comment_sub}"></pre>
+                            <h5 class="card-text" th:text="${#dates.format(dto.comment_created,'yyyy-MM-dd HH:mm:ss')}"></h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- paging COMMENT -->
+                <nav aria-label="Page navigation example">
+                    <div class="board-list-page" th:if="${listPage.hasCommnetDtos()}">
+                        <ul class="pagination" style="justify-content: center; text-align: center; display: flex;">
+                            <li class="page-item">
+                            <li class="page-item" th:if="${listPage.currentPage > 1}">
+                                <a class="page-link" aria-label="<<"
+                                   th:href="@{'/board/view?board_id=' + ${boardDto.board_id} + '&pageNo=' + ${listPage.currentPage - 1}}">&laquo;</a>
+                            </li>
+                            <span th:each="pNo : ${#numbers.sequence(listPage.startPage, listPage.endPage)}">
+                    <span th:if="${pNo == listPage.currentPage}">
+                        <li class="page-item">
+                            <a style="font-weight: bold" class="page-link" aria-current="page"
+                               th:text="${pNo}">[[${pNo}]]</a>
+                        </li>
+                    </span>
+                    <span th:unless="${pNo == listPage.currentPage}">
+                        <li class="page-item">
+                            <a class="page-link" th:aria-label="${pNo}" th:text="${pNo}"
+                               th:href="@{'/board/view?board_id=' + ${boardDto.board_id} + '&pageNo=' + ${pNo}}">[[${pNo}]]</a>
+                        </li>
+                    </span>
+                </span>
+                            <span th:if="${listPage.currentPage < listPage.totalPages}">
+                    <a class="page-link"
+                       th:href="@{'/board/view?board_id=' + ${boardDto.board_id} + '&pageNo=' + ${listPage.currentPage + 1}}">&raquo;</a>
+                </span>
+                        </ul>
+                    </div>
+                </nav>
+                    <div class="buttonGroup" >
+                        <p class="btn_set">
+
+                            <a th:href="@{'/board/update?board_id=' + ${boardDto.board_id}}" class="btns btn_bdr4 btn_mid edit_btn"
+                               th:if="${boardDto.user_no == user_no || role == 1}">수정</a>
+                            <button type="button"  class="btns btn_bdr1 btn_mid delete_btn" th:data-user-name="${boardDto.user_name}" th:data-board-id="${boardDto.board_id}"
+                                    th:if="${boardDto.user_no == user_no || role == 1}">삭제</button>
+
+                            <a th:href="@{/board/main}" class="btns btn_bdr3 btn_mid">뒤로</a>
+                        </p>
+                    </div>
+            </section>
+        </div> <!--/* .content */-->
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">댓글 수정</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="edit_input">
+<!--                            <h1 id="commentnameup"></h1>-->
+<!--                            <label><textarea id="comment_sub_up" name="comment_sub_up"></textarea>-->
+<!--                            </label>-->
+<!--                            <p id="commentcreup"></p>-->
+                            <div class="mb-3">
+                                <label for="user_name_edit" class="col-form-label">작성자:</label>
+                                <input type="text" class="form-control" id="user_name_edit" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="comment_sub_up" class="col-form-label">댓글:</label>
+                                <textarea class="form-control" id="comment_sub_up"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="com_save_btn" class="btn btn-primary com_save_btn" >저장</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="/board/js/boardDelete.js"></script>
+        <script src="/board/js/comment.js"></script>
+        <script src="/board/js/boardView/commentData.js"></script>
+    </th:block>
+
+</th:block>
+
+</body>
+</html>

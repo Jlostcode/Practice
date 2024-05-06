@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/error/css/error404.css" rel="stylesheet">
+</head>
+<body>
+<div class="page-404">
+    <div class="outer">
+        <div class="middle">
+            <div class="inner">
+                <!--BEGIN CONTENT-->
+                <div class="inner-circle"><a href="/"><i class="fa fa-home"></i></a><span>404</span></div>
+                <span class="inner-status">페이지를 찾을 수 없습니다 !</span>
+                <span class="inner-detail">
+                    주소를 다시 확인하여 주세요 :)<br/>
+            </span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

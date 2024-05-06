@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.practice.user.dao.UserInfoDao">
+    <update id="passwordChange" parameterType="com.example.practice.user.dto.UserPasswordChangeDto">
+        UPDATE user
+        SET user_pw = #{user_pw}
+        WHERE user_no = #{user_no}
+    </update>
+</mapper>

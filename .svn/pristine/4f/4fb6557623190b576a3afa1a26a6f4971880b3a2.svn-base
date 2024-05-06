@@ -1,0 +1,20 @@
+package com.example.practice.melonBot.dto;
+
+import lombok.*;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Melon100Dto {
+    List<String> ranks;
+    List<String> titles;
+    List<String> artists;
+    List<String> likes;
+
+
+}

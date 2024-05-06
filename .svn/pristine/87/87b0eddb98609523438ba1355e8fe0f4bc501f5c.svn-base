@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>boardMain</title>
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.0/dist/css/coreui.min.css" rel="stylesheet"
+          integrity="sha384-2E9/b2fZ+VJoP6eRIpzzMFkuqbh0qDkIFVLzJJwkESsdKPEwzb0n6E55enZ+Ee8V" crossorigin="anonymous">
+    <link href="/board/css/boardMainTable.css" rel="stylesheet">
+    <style>
+        .btn-dark {
+            --cui-btn-color: rgba(255, 255, 255, 0.87);
+            --cui-btn-bg: #000000;
+            --cui-btn-border-color: #4f5d73;
+            --cui-btn-hover-color: #fff;
+            --cui-btn-hover-bg: #697588;
+            --cui-btn-hover-border-color: #616d81;
+            --cui-btn-focus-shadow-rgb: 100, 112, 132;
+            --cui-btn-active-color: #fff;
+            --cui-btn-active-bg: #727d8f;
+            --cui-btn-active-border-color: #616d81;
+            --cui-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 21, 0.125);
+            --cui-btn-disabled-color: rgba(255, 255, 255, 0.87);
+            --cui-btn-disabled-bg: #4f5d73;
+            --cui-btn-disabled-border-color: #4f5d73;
+        }
+    </style>
+</head>
+<body>
+
+<th:block th:replace="~{layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content">
+        <div th:if="${param.boardsuccess == 'yes'}">
+
+        </div>
+        <div class="wrapper">
+
+            <div class="title-text" style="text-align: center;">
+                <h1>멜론 TOP 100</h1>
+            </div>
+            <div th:if="${melon100.getRanks().isEmpty()}">
+                <p>게시글이 없습니다.</p>
+            </div>
+            <div th:unless="${melon100.getRanks().isEmpty()}">
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="width: 10px">순위</th>
+                        <th style="width: 15%">아티스트</th>
+                        <th>앨범 제목</th>
+                        <th>좋아요</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div>
+
+                        <tr th:each="row, i : ${melon100.ranks}">
+                            <td th:text="${melon100.ranks[i.index]}">1</td>
+                            <td th:text="${melon100.artists[i.index]}">Artist</td>
+                            <td th:text="${melon100.titles[i.index]}">Title</td>
+                            <td ><ion-icon name="heart-circle-outline" class="small_nav__icon"></ion-icon>
+                                [[${melon100.likes[i.index]}]]
+                            </td>
+                        </tr>
+
+                    </div>
+                    </tbody>
+                </table>
+<!--                <nav aria-label="Page navigation example">-->
+<!--                    <div class="board-list-page" th:if="${listPage.hasBoardDtos()}">-->
+<!--                        <ul class="pagination" style="justify-content: center; text-align: center; display: flex;">-->
+<!--                            <li class="page-item">-->
+<!--                            <li class="page-item" th:if="${listPage.currentPage > 1}">-->
+<!--                                <a class="page-link" aria-label="<<"-->
+<!--                                   th:href="@{'/board/main?pageNo=' + ${listPage.currentPage - 1}}">&laquo;</a>-->
+<!--                            </li>-->
+<!--                            <span th:each="pNo : ${#numbers.sequence(listPage.startPage, listPage.endPage)}">-->
+<!--                    <span th:if="${pNo == listPage.currentPage}">-->
+<!--                        <li class="page-item">-->
+<!--                            <a style="font-weight: bold" class="page-link" aria-current="page"-->
+<!--                               th:text="${pNo}">[[${pNo}]]</a>-->
+<!--                        </li>-->
+<!--                    </span>-->
+<!--                    <span th:unless="${pNo == listPage.currentPage}">-->
+<!--                        <li class="page-item">-->
+<!--                            <a class="page-link" th:aria-label="${pNo}" th:text="${pNo}"-->
+<!--                               th:href="@{'/board/main?pageNo=' + ${pNo}}">[[${pNo}]]</a>-->
+<!--                        </li>-->
+<!--                    </span>-->
+<!--                </span>-->
+<!--                            <span th:if="${listPage.currentPage < listPage.totalPages}">-->
+<!--                    <a class="page-link"-->
+<!--                       th:href="@{'/board/main?pageNo=' + ${listPage.currentPage + 1}}">&raquo;</a>-->
+<!--                </span>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </nav>-->
+<!--                <div style="text-align: end;display: flex;justify-content: flex-end;">-->
+<!--                    <button type="button" class="btn btn-dark" onclick="location.href='/board/insert'">글 작성</button>-->
+<!--                </div>-->
+            </div>
+        </div>
+    </th:block>
+
+</th:block>
+
+
+</body>
+</html>

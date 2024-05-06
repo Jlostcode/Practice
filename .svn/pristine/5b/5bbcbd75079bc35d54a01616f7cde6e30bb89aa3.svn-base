@@ -1,0 +1,44 @@
+package com.example.practice.signUp.controller;
+
+import com.example.practice.signUp.dao.SignUpDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.example.practice.signUp.dto.SignUpDto;
+import com.example.practice.signUp.service.SignUpService;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+@Controller
+public class SignUpController {
+	
+	@Autowired
+	private SignUpService signUpService;
+	
+	@GetMapping("/signUp")
+	public String signUpPage() {
+		return "signUp/signUp";
+	}
+
+	
+	@PostMapping("/signUpAdd")
+	public String signUpAdd(@RequestParam("user_name") String user_name, @RequestParam("user_id") String user_id,
+							@RequestParam("user_pw") String user_pw, @RequestParam("user_tel") String user_tel,
+							@RequestParam("user_gen") int user_gen) {
+		SignUpDto signUpDto = new SignUpDto(0, user_name, user_tel, user_id, user_pw, user_gen, null);
+		System.out.println(signUpDto);
+		signUpService.signUpUser(signUpDto);
+		return "redirect:/login";
+	}
+	
+//	@RequestMapping(value="/signUpAdd", method = RequestMethod.POST)
+//	public String signUpAdd(SignUpDto signUpDto) {
+//		System.out.println(signUpDto);
+//		signUpService.signUpUser(signUpDto);
+//		return "redirect:/login";
+//	}
+	
+	
+}

@@ -1,0 +1,53 @@
+package com.example.practice.melonBot.service;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+public class MelonBot {
+    public static void main(String[] args) throws InterruptedException {
+        // 크롬 드라이버 경로 설정
+        System.setProperty("webdriver.chrome.driver", "C:\\Dev\\tools\\chromedriver\\chromedriver.exe" );
+
+        // 크롬 옵션 설정
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless"); // 브라우저를 표시하지 않고 실행합니다.
+        options.addArguments("--remote-allow-origins=*");
+        // 웹 드라이버 생성
+        WebDriver driver = new ChromeDriver(options);
+
+        // 멜론 차트 페이지 URL
+        String url = "https://www.melon.com/chart/index.htm";
+
+        // 페이지로 이동
+        driver.get(url);
+
+        // 2초 대기
+        Thread.sleep(2000);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // 곡 제목 파싱
+        WebElement element = driver.findElement(By.xpath("//*[@id=\"lst50\"]/td[6]/div/div/div[1]/span/a"));
+        String title = element.getAttribute("title");
+
+        // 좋아요 수 파싱
+        WebElement likeElement = driver.findElement(By.xpath("//*[@id=\"lst50\"]/td[8]/div/button/span[2]"));
+        String cntLike = likeElement.getText();
+
+//        for (WebElement element : elements) {
+//            System.out.println(element.getText());
+//        }
+
+        System.out.println("1위 노래는 [" + title + "]입니다.");
+        System.out.println("좋아요 수는 [" + cntLike + "]입니다.");
+
+        // 웹 드라이버 종료
+        driver.quit();
+    }
+}
