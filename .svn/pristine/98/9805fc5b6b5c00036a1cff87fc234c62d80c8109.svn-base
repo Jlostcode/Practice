@@ -1,0 +1,29 @@
+
+.table thead td{
+	padding: 8px 10px;
+	border-bottom: 1px solid #E6E6E6;
+}	
+.table tbody td{
+	padding: 3px 8px;
+	border-bottom: 1px solid #E6E6E6;
+	vertical-align: initial!important;
+	text-align: center;
+	font-size: 11pt;
+}
+.tableOut{
+	position: absolute;
+	display: inline-block;
+	margin-right: 1%!important;
+}
+.sidebar {
+	min-height: 150vh;
+}
+.card-header{
+	display: flow-root;
+}
+#paginationBox{
+    float: none;
+    position: relative;
+    display: inline-block;
+    left: calc(50% - 150px);
+}
