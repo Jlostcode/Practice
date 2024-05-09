@@ -12,11 +12,27 @@
 <link rel="stylesheet" type="text/css" href="/layout/layout.css">
 <link rel="stylesheet" type="text/css" href="/layout/styles.css">
 <link rel="stylesheet" type="text/css" href="/layout/loginInfo.css">
+
 <link href="/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
 <link href="/css/customDatepicker.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<link rel="stylesheet" type="text/css" href="/board/css/datatables.min.css" />
+<link rel="stylesheet" type="text/css" href="/board/css/customDataTable.css" />
+
+<!-- 엑셀 -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+
+
 <style>
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+	/* 한글 폰트 설정 (여기서는 Noto Sans KR을 예시로 사용) */
+}
+
 .btn-dark { -
 	-cui-btn-color: rgba(255, 255, 255, 0.87); -
 	-cui-btn-bg: #000000; -
@@ -119,13 +135,13 @@ function redirectBoardURL(index) {
 
 			<div class="tableOut card shadow mb-4">
 				<div class="card-header py-3">
-					<form action="/board/main" method="GET" class="form-inline d-flex justify-content-between">
+					<form action="/board/main" method="GET" class="form-inline d-flex justify-content-between align-items-center">
 						<div>
-							<h6 class="m-0 font-weight-bold text-primary">${pagination.type}게시판</h6>
+							<h6 class="m-0 font-weight-bold text-primary">검색</h6>
 						</div>
-						<div class="d-flex">
+						<div class="d-flex align-items-center">
 							<select name="searchSelect" id="searchSelect" class="form-control mx-2" style="width: 100px">
-								<option value="user.user_name">작성자</option>
+								<option value="u.user_name">작성자</option>
 								<option value="board_title">제목</option>
 							</select>
 							<div class="form-group mx-6">
@@ -156,10 +172,10 @@ function redirectBoardURL(index) {
 					<table style="width: 100%;">
 						<thead>
 						<colgroup>
-							<col width='2%'>
-							<col width='12%'>
-							<col width='20%'>
-							<col width='6%'>
+							<col width='1%'>
+							<col width='5%'>
+							<col width='35%'>
+							<col width='9%'>
 						</colgroup>
 						<tr>
 							<th style="width: 10px">No.</th>
@@ -193,6 +209,29 @@ function redirectBoardURL(index) {
 		</div>
 	</div>
 
+	<div class="dataTableBoard container ">
+		<table id="dataTableBoard" class="display" style="width: 100%">
+			<colgroup>
+				<col width='1%'>
+				<col width='5%'>
+				<col width='35%'>
+				<col width='9%'>
+			</colgroup>
+			<thead>
+				<tr>
+					<th class="text-center">No.</th>
+					<th class="text-center">작성자</th>
+					<th class="text-center">제목</th>
+					<th class="text-center">작성일자</th>
+
+				</tr>
+			</thead>
+			<tbody id="dataTableBoardBody">
+			</tbody>
+		</table>
+	</div>
+	<div id="load">
+		<img src="/board/loading.gif" alt="loading">
 	</div>
 	<!-- IONICONS -->
 	<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
@@ -204,6 +243,12 @@ function redirectBoardURL(index) {
 	<!-- datePicker -->
 	<script src="/js/jquery-ui.min.js"></script>
 	<script src="/js/datepicker.js"></script>
+
+	<!-- dataTables -->
+
+	<script type="text/javascript" src="/board/js/datatables.min.js"></script>
+	<script type="text/javascript" src="/board/js/customDataTable.js"></script>
+
 
 
 </body>
