@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Melon Top 100</title>
+<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-2E9/b2fZ+VJoP6eRIpzzMFkuqbh0qDkIFVLzJJwkESsdKPEwzb0n6E55enZ+Ee8V" crossorigin="anonymous">
+<link href="/board/css/boardMainTable.css" rel="stylesheet">
+<script src="/board/loader.js" type="text/javascript"></script>
+<style>
+.btn-dark {
+	-cui-btn-color: rgba(255, 255, 255, 0.87);
+	-cui-btn-bg: #000000;
+	-cui-btn-border-color: #4f5d73;
+	-cui-btn-hover-color: #fff;
+	-cui-btn-hover-bg: #697588;
+	-cui-btn-hover-border-color: #616d81;
+	-cui-btn-focus-shadow-rgb: 100, 112, 132;
+	-cui-btn-active-color: #fff;
+	-cui-btn-active-bg: #727d8f;
+	-cui-btn-active-border-color: #616d81;
+	-cui-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 21, 0.125);
+	-cui-btn-disabled-color: rgba(255, 255, 255, 0.87);
+	-cui-btn-disabled-bg: #4f5d73;
+	-cui-btn-disabled-border-color: #4f5d73;
+}
+
+body {
+	overflow: hidden;
+}
+
+#load {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	display: block;
+	opacity: 0.8;
+	background: gray;
+	z-index: 99;
+	text-align: center;
+}
+
+#load>img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 100;
+}
+</style>
+</head>
+<body>
+
+	<th:block th:replace="~{thymeleaf/layout/layout :: setContent(~{this::content})}">
+
+		<th:block th:fragment="content">
+			<script>
+				// $(window).load(setTimeout(function() { $('#load').hide(); }, 3000));
+				// $(document).ready(function() {
+				//     // 로딩 이미지를 3초 후에 숨깁니다.
+				//     setTimeout(function() {
+				//         $('#load').hide(); // 로딩 이미지 숨기기
+				//         $('body').css('overflow', 'auto'); // body 스크롤 활성화
+				//     }, 3000);
+				// });
+				// 문서가 로드된 후에 실행될 함수
+				document.addEventListener("DOMContentLoaded", function() {
+					// 3초 후에 로딩 이미지를 숨깁니다.
+					setTimeout(function() {
+						var loadDiv = document.getElementById("load");
+						if (loadDiv) {
+							loadDiv.style.display = "none"; // 로딩 이미지 숨기기
+							document.body.style.overflow = "auto"; // body 스크롤 활성화
+						}
+					}, 2000);
+				});
+			</script>
+			<div id="load">
+				<img src="/board/loading.gif" alt="loading">
+			</div>
+
+			<div th:if="${param.boardsuccess == 'yes'}"></div>
+			<div class="wrapper">
+
+				<div class="title-text" style="text-align: center; width:1400px;">
+					<h1>멜론 TOP 100</h1>
+					<div class="d-grid gap-2 d-flex row justify-content-between  align-items-center">
+						<div class="col-auto" style="color:">매 정각 순위 업데이트</div>
+						<a href="/melonExcelDown" class="btn btn-ghost-dark col-auto">멜론 차트 엑셀 다운</a>
+					</div>
+				</div>
+				<div th:if="${melon100.isEmpty()}">
+					<p>게시글이 없습니다.</p>
+				</div>
+				<div th:unless="${melon100.isEmpty()}">
+					<table>
+						<colgroup>
+							<col width='1%'>
+							<col width='5%'>
+							<col width='35%'>
+							<col width='9%'>
+						</colgroup>
+						<thead>
+							<tr>
+								<th>순위</th>
+								<th>아티스트</th>
+								<th>앨범 제목</th>
+								<th>좋아요</th>
+							</tr>
+						</thead>
+						<tbody>
+							<div>
+								<tr th:each="melon : ${melon100}">
+									<td th:text="${melon.getMelon_rank()}">1</td>
+									<td>
+										<div>
+											<a th:text="${melon.getMelon_artist()}" th:href="'https://www.melon.com/artist/timeline.htm?artistId=' + ${melon.getMelon_artistLink()}" target="_blank"> Artist </a>
+										</div>
+									</td>
+									<td>
+										<div>
+											<a th:text="${melon.getMelon_title()}" th:href="'https://www.melon.com/song/detail.htm?songId=' + ${melon.getMelon_titleLink()}" target="_blank"> Title </a>
+										</div>
+									</td>
+									<td>
+										<ion-icon name="heart-circle-outline" class="small_nav__icon"></ion-icon>
+										[[${melon.getMelon_like()}]]
+									</td>
+								</tr>
+
+							</div>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</th:block>
+
+	</th:block>
+
+
+</body>
+</html>
