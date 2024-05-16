@@ -12,11 +12,12 @@
 <link rel="stylesheet" type="text/css" href="/layout/layout.css">
 <link rel="stylesheet" type="text/css" href="/layout/styles.css">
 <link rel="stylesheet" type="text/css" href="/layout/loginInfo.css">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 <link href="/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
 <link href="/css/customDatepicker.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
 <link rel="stylesheet" type="text/css" href="/board/css/datatables.min.css" />
 <link rel="stylesheet" type="text/css" href="/board/css/customDataTable.css" />
 
@@ -52,10 +53,24 @@ body {
 </style>
 <script>
 var selectOption = '${pagination.searchSelect}';
+
 function redirectBoardURL(index) {
     let goURL = '/board/view?board_id=' + index;
     window.location.href = goURL;
 }
+
+// 문서가 로드된 후에 실행될 함수
+document.addEventListener("DOMContentLoaded", function() {
+	// 3초 후에 로딩 이미지를 숨깁니다.
+	setTimeout(function() {
+		var loadDiv = document.getElementById("load");
+		if (loadDiv) {
+			loadDiv.style.display = "none"; // 로딩 이미지 숨기기
+			document.body.style.overflow = "auto"; // body 스크롤 활성화
+		}
+	}, 2000);
+});
+
 </script>
 </head>
 <body id="body-pd">
@@ -116,6 +131,7 @@ function redirectBoardURL(index) {
 					<ion-icon name="musical-notes-outline" class="small_nav__icon"></ion-icon>
 					<span class="small_nav_name">멜론 차트2</span>
 				</a>
+
 				<a href="/board/main" class="small_nav__link">
 					<ion-icon name="reader-outline" class="small_nav__icon"></ion-icon>
 					<span class="small_nav_name">게시판</span>
@@ -123,7 +139,7 @@ function redirectBoardURL(index) {
 				<a href="/board/main2" class="small_nav__link">
 					<ion-icon name="reader-outline" class="small_nav__icon"></ion-icon>
 					<span class="small_nav_name">게시판2</span>
-				</a> 
+				</a>
 				<a th:href="@{/logout}" class="small_nav__link" onclick="logout()">
 					<ion-icon name="log-out-outline" class="small_nav__icon"></ion-icon>
 					<span class="small_nav_name">Log out</span>
@@ -140,7 +156,7 @@ function redirectBoardURL(index) {
 
 			<div class="tableOut card shadow mb-4">
 				<div class="card-header py-3">
-					<form action="/board/main2" method="GET" class="form-inline d-flex justify-content-between align-items-center">
+					<form action="/board/main" method="GET" class="form-inline d-flex justify-content-between align-items-center">
 						<div>
 							<h6 class="m-0 font-weight-bold text-primary">검색</h6>
 						</div>
@@ -154,19 +170,14 @@ function redirectBoardURL(index) {
 							</div>
 							<div class="form-group mx-2">
 								<div class="d-flex align-items-center">
-									<!-- 시작: 라벨을 포함하는 열 -->
-									<label for="startDate" class="mr-2">시작:</label>
-									<input type="text" id="startDate" name="startDate" class="form-control" readonly value="${pagination.startDate}">
-								</div>
-							</div>
-							<div class="form-group mx-2">
-								<div class="d-flex align-items-center">
-									<!-- 종료: 라벨을 포함하는 열 -->
-									<label for="endDate" class="mr-2">종료:</label>
-									<input type="text" id="endDate" name="endDate" class="form-control" readonly value="${pagination.endDate}">
+									<div style="width:20%;">날짜</div>
+									<input style="width: 235px;" type="text" class="form-control readonly" id="boardDate" value="${pagination.startDate} ~ ${pagination.endDate}" readonly="readonly">
+									<label for="boardDate"><span class="input-group-addon"><i class="fa fa-calendar"></i></span></label>
 								</div>
 							</div>
 							<input type="hidden" id="type" name="type" value="${pagination.type}">
+							<input type="hidden" name="startDate" id="startDate" value="${pagination.startDate}" />
+							<input type="hidden" name="endDate" id="endDate" value="${pagination.endDate}" />
 							<button type="submit" class="btn btn-primary">검색</button>
 						</div>
 					</form>
@@ -213,28 +224,6 @@ function redirectBoardURL(index) {
 			</div>
 		</div>
 	</div>
-
-	<div class="dataTableBoard container ">
-		<table id="dataTableBoard" class="display" style="width: 100%">
-			<colgroup>
-				<col width='1%'>
-				<col width='5%'>
-				<col width='35%'>
-				<col width='9%'>
-			</colgroup>
-			<thead>
-				<tr>
-					<th class="text-center">No.</th>
-					<th class="text-center">작성자</th>
-					<th class="text-center">제목</th>
-					<th class="text-center">작성일자</th>
-
-				</tr>
-			</thead>
-			<tbody id="dataTableBoardBody">
-			</tbody>
-		</table>
-	</div>
 	<div id="load">
 		<img src="/board/loading.gif" alt="loading">
 	</div>
@@ -253,7 +242,10 @@ function redirectBoardURL(index) {
 
 	<script type="text/javascript" src="/board/js/datatables.min.js"></script>
 	<script type="text/javascript" src="/board/js/customDataTable.js"></script>
-
+	<script type="text/javascript" src="/daterangepicker/moment.min.js"></script>
+	<script type="text/javascript" src="/daterangepicker/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="/daterangepicker/daterangepicker.css" />
+	<script type="text/javascript" src="/board/js/boardDateRangePicker.js"></script>
 
 
 </body>
