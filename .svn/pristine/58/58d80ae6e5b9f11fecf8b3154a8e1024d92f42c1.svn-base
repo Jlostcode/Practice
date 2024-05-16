@@ -1,0 +1,48 @@
+[33mcommit f2a0f8fb0bdd497692b40492c0e419428f5e3df4[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Juchan <ksyczx@naver.com>
+Date:   Mon May 13 17:38:34 2024 +0900
+
+    2024.05.13 Melon chart_Top100 ( Pagination 사용 / EXCEL 다운로드 / Search 기능 )
+
+[33mcommit a9189794a8e7063f56523de2affbec41a1599919[m
+Author: Juchan <ksyczx@naver.com>
+Date:   Fri May 10 16:58:42 2024 +0900
+
+    2024.05.10 devare->delete 수정
+
+[33mcommit 6cfcd98c553a2d489ed8519273562d10aa3a1bfe[m
+Author: Juchan <ksyczx@naver.com>
+Date:   Thu May 9 16:12:20 2024 +0900
+
+    2024.05.09 -- MELON CHART_게시판 datatable - 엑셀 갯수목록,검색,페이징) -- Practice 로그 설정 / Security config '//' 오류 허용 설정
+
+[33mcommit 97ea70535ba1e13c1289225c3df774e20519fe13[m
+Merge: de6755b 9ccb9c6
+Author: Juchan <ksyczx@naver.com>
+Date:   Wed May 8 10:38:06 2024 +0900
+
+    Merge branch 'main' of https://github.com/Jlostcode/Practice
+
+[33mcommit de6755b51d8721dcc9a6c57f73eece9bb614025b[m
+Author: Juchan <ksyczx@naver.com>
+Date:   Wed May 8 10:35:25 2024 +0900
+
+    24.05.08 MELON CHART EXCEL DOWNLOAD
+
+[33mcommit 9ccb9c611462fa8e4a3d5e3912f5bdf21a8e6b95[m
+Author: 김주찬 <133706327+Jlostcode@users.noreply.github.com>
+Date:   Tue May 7 16:37:31 2024 +0900
+
+    Update README.md
+
+[33mcommit 03bc70352231cfcfc9e1a2e31425e067719c1ee5[m
+Author: Juchan <ksyczx@naver.com>
+Date:   Tue May 7 16:18:48 2024 +0900
+
+    Search 기능 / Pagination 사용 / row _ num 필드 추가24.05.07
+
+[33mcommit 7a4b171d3f9c107bc135246b5f1674da11505b91[m
+Author: Juchan <ksyczx@naver.com>
+Date:   Tue May 7 08:49:30 2024 +0900
+
+    melon top 100
